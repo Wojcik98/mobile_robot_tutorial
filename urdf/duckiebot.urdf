@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<robot name="duckiebot">
+
+  <link name="base_link" />
+
+  <link name="chassis">
+    <visual name="visual">
+      <geometry>
+        <box size="0.145 0.08 0.10" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="lidar">
+    <visual name="visual">
+      <geometry>
+        <cylinder radius="0.03" length="0.03" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="left_wheel">
+    <visual name="visual">
+      <geometry>
+        <cylinder radius="0.0325" length="0.025" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="right_wheel">
+    <visual name="visual">
+      <geometry>
+        <cylinder radius="0.0325" length="0.025" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="caster">
+    <visual name="visual">
+      <geometry>
+        <sphere radius="0.01" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="chassis" />
+    <origin xyz="-0.0525 0.0 0.0375" />
+  </joint>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="chassis" />
+    <child link="lidar" />
+    <origin xyz="-0.04 0 0.065" />
+  </joint>
+
+  <joint name="caster_wheel" type="fixed">
+    <parent link="chassis" />
+    <child link="caster" />
+    <origin rpy="0 0 0" xyz="-0.0375 0 -0.06" />
+  </joint>
+
+  <joint name="left_wheel_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="left_wheel" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5" />
+    <origin rpy="-1.5707 0 0" xyz="0.0 0.0525 0.0" />
+  </joint>
+
+  <joint name="right_wheel_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="right_wheel" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5" />
+    <origin rpy="-1.5707 0 0" xyz="0.0 -0.0525 0.0" />
+  </joint>
+
+</robot>
